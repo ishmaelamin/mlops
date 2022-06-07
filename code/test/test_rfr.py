@@ -12,7 +12,28 @@ from sklearn.ensemble import RandomForestClassifier # checking if this is availa
 
 import os
 cwd = os.getcwd()
+import json
 
+from azureml.core import Webservice
+
+#We will tweak the pre-processing function from before to handle missing data better, too...
+
+# re-define a function to convert an object (categorical) feature into an int feature
+# 0 = most common category, highest int = least common.
+def getObjectFeature(df, col, datalength=1460):
+    if df[col].dtype!='object': # if it's not categorical..
+        print('feature',col,'is not an object feature.')
+        return df
+    else:
+        df1 = df
+        counts = df1[col].value_counts() # get the counts for each label for the feature
+#         print(col,'labels, common to rare:',counts.index.tolist()) # get an ordered list of the labels
+        df1[col] = [counts.index.tolist().index(i) 
+                    if i in counts.index.tolist() 
+                    else 0 
+                    for i in df1[col] ] # do the conversion
+        return df1 # make the new (integer) column from the conversion
+    
 def main(service):
     rfr(bootstrap=True, criterion='mse', max_depth=None,
            max_features='auto', max_leaf_nodes=None,
