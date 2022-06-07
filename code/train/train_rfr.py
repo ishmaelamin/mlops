@@ -243,9 +243,9 @@ X.head()
 # Y.head()
 
 # Mutual Information Regression Metric for Feature Ranking
-We will use mutual information regression for feature ranking and selection. This metric measures the dependence between two random variables, in this case each feature in the data set and the sales price regression target. Note that this doesn't consider combinations of feature values (for example, the dependence between sales price and the year of sale combined with overall quality), which may also be useful.
+#We will use mutual information regression for feature ranking and selection. This metric measures the dependence between two random variables, in this case each feature in the data set and the sales price regression target. Note that this doesn't consider combinations of feature values (for example, the dependence between sales price and the year of sale combined with overall quality), which may also be useful.
 
-See: http://scikit-learn.org/stable/modules/generated/sklearn.feature_selection.mutual_info_regression.html
+#See: http://scikit-learn.org/stable/modules/generated/sklearn.feature_selection.mutual_info_regression.html
 
 mir_result = fs.mutual_info_regression(X, yt) # mutual information regression feature ordering
 feature_scores = []
