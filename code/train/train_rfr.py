@@ -17,6 +17,10 @@ from sklearn.ensemble import RandomForestClassifier # checking if this is availa
 import os
 cwd = os.getcwd()
 
+from azureml.core import Dataset, Run
+run = Run.get_context()
+
+
 # import the training data set and make sure it's in correctly...
 train = pd.read_csv(os.path.join(cwd,"train.csv"))
 train_original = pd.read_csv(os.path.join(cwd,"train.csv"))
